@@ -15,6 +15,6 @@ jobs:
         uses: freeedcom/ai-codereviewer@main
         with:
           GITHUB_TOKEN:  ${{ secrets.TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_KEY: "sk-kfGlYjjvwM9PAI6Us5HulzXdtOXPChgo1X2qm257RlP80YZG"
           OPENAI_API_MODEL: "gpt-3.5-turbo"
           exclude: "yarn.lock,dist/**"
