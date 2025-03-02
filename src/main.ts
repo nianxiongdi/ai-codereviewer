@@ -261,3 +261,10 @@ main().catch((error) => {
   console.error("Error:", error);
   process.exit(1);
 });
+
+
+try {
+  1/a
+} catch(e) {
+
+}
