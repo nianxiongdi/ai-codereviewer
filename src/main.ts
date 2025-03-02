@@ -64,6 +64,7 @@ async function getDiff(
     pull_number,
     mediaType: { format: "diff" },
   });
+  console.log(">>> diff response", response)
   // @ts-expect-error - response.data is a string
   return response.data;
 }
