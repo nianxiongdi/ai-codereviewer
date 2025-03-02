@@ -215,6 +215,7 @@ function main() {
                 head: newHeadSha,
             });
             diff = String(response.data);
+            console.log(">> diff response", response)
         }
         else {
             console.log("Unsupported event:", process.env.GITHUB_EVENT_NAME);
