@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Code Review
-        uses: freeedcom/ai-codereviewer@main
+        uses: nianxiongdi/ai-codereviewer@main
         with:
           GITHUB_TOKEN:  ${{ secrets.TOKEN }}
           OPENAI_API_KEY: "sk-kfGlYjjvwM9PAI6Us5HulzXdtOXPChgo1X2qm257RlP80YZG"
