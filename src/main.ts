@@ -4,6 +4,7 @@ import OpenAI from "openai";
 import { Octokit } from "@octokit/rest";
 import parseDiff, { Chunk, File } from "parse-diff";
 import minimatch from "minimatch";
+import { addSyntheticLeadingComment } from "typescript";
 
 const GITHUB_TOKEN: string = core.getInput("TOKEN");
 const OPENAI_API_KEY: string = core.getInput("OPENAI_API_KEY");
@@ -256,3 +257,8 @@ main().catch((error) => {
   console.error("Error:", error);
   process.exit(1);
 });
+
+1/aaa
+
+
+b/222
