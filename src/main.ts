@@ -94,18 +94,15 @@ async function analyzeCode(
 }
 
 function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
-  return `Your task is to review pull requests. Instructions:
-- Provide the response in following JSON format:  {"reviews": [{"lineNumber":  <line_number>, "reviewComment": "<review comment>"}]}
-- Do not give positive comments or compliments.
-- Provide comments and suggestions ONLY if there is something to improve, otherwise "reviews" should be an empty array.
-- Write the comment in GitHub Markdown format.
-- Use the given description only for the overall context and only comment the code.
-- IMPORTANT: NEVER suggest adding comments to the code.
-
-Review the following code diff in the file "${
-    file.to
-  }" and take the pull request title and description into account when writing the response.
-  
+  return `你的任务是审查拉取请求，即为**pull request**。以下是对你的要求：
+-回答的问题的结果需要是json格式，不准有其他的描述，格式如下：{"reviews": [{"lineNumber": <line_number>, "reviewComment": "<review comment>"}]}
+- 不要给出正面评论或赞美。
+- 仅在有需要改进的地方提供评论和建议，否则“reviews”应为空数组。
+- 以 GitHub Markdown 格式撰写评论。
+- 仅将给定的描述用于整体上下文，并且仅注释代码。
+- 重要提示：切勿建议在代码中添加注释。
+- 请用中文回答问题。
+在文件${file.to}中查看以下代码差异，并在撰写响应时考虑拉取请求标题和描述。
 Pull request title: ${prDetails.title}
 Pull request description:
 
@@ -246,6 +243,8 @@ async function main() {
       minimatch(file.to ?? "", pattern)
     );
   });
+
+  console.log(1111)
 
   const comments = await analyzeCode(filteredDiff, prDetails);
   if (comments.length > 0) {
