@@ -16,6 +16,9 @@ const openai = new OpenAI({
 });
 
 
+console.log(123)
+
+
 
 
 
