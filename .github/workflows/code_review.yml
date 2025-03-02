@@ -11,6 +11,3 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Code Review
-        uses: nianxiongdi/ai-codereviewer@ai
-
