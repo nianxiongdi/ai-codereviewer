@@ -74,8 +74,9 @@ async function analyzeCode(
   prDetails: PRDetails
 ): Promise<Array<{ body: string; path: string; line: number }>> {
   const comments: Array<{ body: string; path: string; line: number }> = [];
-
+  console.log(">>> parsedDiff", parsedDiff)
   for (const file of parsedDiff) {
+    console.log(">>> file.to", file.to)
     if (file.to === "/dev/null") continue; // Ignore deleted files
     for (const chunk of file.chunks) {
       const prompt = createPrompt(file, chunk, prDetails);

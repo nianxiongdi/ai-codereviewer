@@ -94,13 +94,14 @@ function getDiff(owner, repo, pull_number) {
 function analyzeCode(parsedDiff, prDetails) {
     return __awaiter(this, void 0, void 0, function* () {
         const comments = [];
+        console.log(">>> parsedDiff", parsedDiff);
         for (const file of parsedDiff) {
-            console.log(">>> file.to", file.to)
+            console.log(">>> file.to", file.to);
             if (file.to === "/dev/null")
                 continue; // Ignore deleted files
             for (const chunk of file.chunks) {
                 const prompt = createPrompt(file, chunk, prDetails);
-                console.log(">>> prompt 1 2 3", prompt)
+                console.log(">>> prompt", prompt);
                 const aiResponse = yield getAIResponse(prompt);
                 if (aiResponse) {
                     const newComments = createComment(file, chunk, aiResponse);
@@ -114,7 +115,6 @@ function analyzeCode(parsedDiff, prDetails) {
     });
 }
 function createPrompt(file, chunk, prDetails) {
-  console.log(">>> >>> prompt 1 2 3")
     return `Your task is to review pull requests. Instructions:
 - Provide the response in following JSON format:  {"reviews": [{"lineNumber":  <line_number>, "reviewComment": "<review comment>"}]}
 - Do not give positive comments or compliments.
@@ -201,7 +201,6 @@ function main() {
         const prDetails = yield getPRDetails();
         let diff;
         const eventData = JSON.parse((0, fs_1.readFileSync)((_a = process.env.GITHUB_EVENT_PATH) !== null && _a !== void 0 ? _a : "", "utf8"));
-        console.log(">>> eventData", eventData)
         if (eventData.action === "opened") {
             diff = yield getDiff(prDetails.owner, prDetails.repo, prDetails.pull_number);
         }
@@ -218,7 +217,6 @@ function main() {
                 head: newHeadSha,
             });
             diff = String(response.data);
-            console.log(">> diff response", response)
         }
         else {
             console.log("Unsupported event:", process.env.GITHUB_EVENT_NAME);
